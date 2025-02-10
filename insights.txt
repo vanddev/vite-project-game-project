@@ -1,0 +1,125 @@
+1. Jogos / Gênero
+Tipo de gráfico sugerido: Gráfico de barras empilhadas ou Gráfico de pizza
+
+Justificativa: Um gráfico de barras empilhadas pode mostrar a distribuição de jogos por gênero, enquanto um gráfico de pizza pode ilustrar de forma mais visual e simples as proporções de cada gênero em relação ao total de jogos. Ambos são eficazes para comparar diferentes gêneros de jogos de forma clara.
+Alternativa: Gráfico de barras horizontais se for necessário comparar a quantidade de jogos de cada gênero de maneira mais legível.
+
+2. Jogos / Gênero / Plataforma
+Tipo de gráfico sugerido: Gráfico de barras empilhadas (3D ou 2D) ou Gráfico de heatmap (mapa de calor)
+
+Justificativa: Um gráfico de barras empilhadas pode ser usado para mostrar como diferentes gêneros são distribuídos entre as plataformas. No eixo X, você pode colocar as plataformas, no eixo Y os gêneros, e dentro de cada barra empilhada você pode representar a quantidade de jogos de cada gênero.
+Um heatmap poderia ser uma alternativa interessante para visualizar rapidamente a intensidade (quantidade) de jogos por gênero em cada plataforma, usando uma escala de cores.
+3. Jogos / Plataforma
+Tipo de gráfico sugerido: Gráfico de barras ou Gráfico de linhas
+
+Justificativa: Um gráfico de barras seria ideal para comparar a quantidade de jogos disponíveis em cada plataforma. Se você quiser analisar a tendência ao longo do tempo (como o aumento de lançamentos de jogos por plataforma), um gráfico de linhas seria uma boa escolha.
+4. Séries / Franquias
+Tipo de gráfico sugerido: Gráfico de barras horizontais ou Gráfico de colunas
+
+Justificativa: Gráficos de barras horizontais ou colunas funcionam bem para comparar a quantidade de séries dentro de diferentes franquias. O gráfico de barras horizontais é especialmente útil quando os nomes das franquias são longos, pois facilita a leitura.
+5. Games Finalizados / Games Jogados - Plataforma
+Tipo de gráfico sugerido: Gráfico de barras agrupadas ou Gráfico de linhas
+
+Justificativa: Um gráfico de barras agrupadas pode mostrar a quantidade de jogos finalizados e a quantidade de jogos jogados em cada plataforma, permitindo comparar as duas variáveis lado a lado. Se houver interesse em mostrar a evolução desses dados ao longo do tempo, um gráfico de linhas também seria adequado.
+Sugestões de novos temas para análise:
+Jogadores / Tempo de Jogo / Plataforma
+
+Gráfico sugerido: Gráfico de dispersão ou boxplot para analisar a variação do tempo de jogo entre diferentes plataformas.
+Jogos / Tipo de Jogo (Single-player, Multiplayer, Coop)
+
+Gráfico sugerido: Gráfico de barras empilhadas ou gráfico de pizza para visualizar a distribuição dos jogos entre diferentes tipos.
+Jogos / Ranking de Popularidade / Gênero
+
+Gráfico sugerido: Gráfico de barras ordenadas ou gráfico de bolhas para representar o ranking de popularidade de jogos por gênero.
+Jogadores / Faixa Etária / Plataforma
+
+Gráfico sugerido: Gráfico de barras empilhadas ou gráfico de linhas para analisar como diferentes faixas etárias se distribuem entre as plataformas.
+Esses são alguns exemplos e sugestões de gráficos que podem se encaixar bem com os temas de sua plataforma. A escolha do gráfico deve sempre considerar o objetivo da visualização e o público-alvo da análise.
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Criar um sistema de recomendação de jogos baseado apenas em características como gêneros em comum, plataforma de lançamento e notas de avaliação (sem dados de usuários) é uma tarefa interessante, que pode ser realizada utilizando técnicas de filtragem baseada em conteúdo. Vamos passar por algumas etapas gerais para construir esse sistema:
+
+1. Coleta de Dados
+Primeiro, é necessário obter as informações dos jogos que serão analisados. Isso pode ser feito por meio de APIs de dados de jogos, como a RAWG API, IGDB API ou outras fontes de dados como Metacritic, IMDB, ou dados públicos do Steam.
+
+As informações essenciais que você precisará são:
+
+Gêneros dos jogos (por exemplo, ação, aventura, RPG, etc.)
+Plataformas de lançamento (PC, PlayStation, Xbox, Switch, etc.)
+Notas de avaliação (em sites como Metacritic ou IMDB)
+2. Pré-processamento dos Dados
+Normalização das notas: Se você coletar as notas de vários sites (como Metacritic e IMDB), pode ser necessário normalizar as avaliações, pois as escalas podem variar.
+Lidar com dados ausentes: Alguns jogos podem não ter avaliação em todos os sites, ou podem não ter informações sobre todos os gêneros ou plataformas. Isso precisa ser tratado adequadamente, removendo ou substituindo os dados faltantes.
+Codificação de Gêneros e Plataformas: Você pode transformar os gêneros e plataformas em variáveis binárias (uma técnica conhecida como one-hot encoding) para representar os jogos de forma mais estruturada. Por exemplo:
+Para gêneros: Se o jogo for de "ação", "aventura" e "RPG", a representação poderia ser algo como [1, 1, 1, 0, 0, 0, ...], onde cada número indica a presença ou ausência de um gênero específico.
+Para plataformas: Uma representação similar pode ser usada para plataformas, como PC, PlayStation, Xbox, etc.
+3. Criação de um Modelo de Recomendação
+Agora, você precisa criar um algoritmo para fazer as recomendações, e há algumas abordagens possíveis para isso:
+
+A. Cálculo de Similaridade
+Você pode calcular a similaridade entre os jogos com base nas características (gêneros, plataformas e notas). Algumas métricas comuns são:
+
+Distância Euclidiana: Mede a distância entre dois jogos no espaço vetorial (com base nos gêneros, plataformas e notas).
+Coeficiente de Similaridade de Cosseno: Mede o ângulo entre dois vetores, o que ajuda a determinar o quão "similares" são dois jogos em relação às características que você está considerando.
+Coeficiente de Jaccard: Útil para medir a similaridade entre conjuntos, como gêneros ou plataformas em comum.
+B. Algoritmos de Recomendação
+Com as similaridades calculadas, você pode usar um dos seguintes métodos:
+
+K-Nearest Neighbors (KNN): Uma abordagem simples onde você calcula a similaridade entre os jogos e recomenda jogos que são mais semelhantes aos jogos já conhecidos ou selecionados.
+
+Filtragem Baseada em Conteúdo: Dado um jogo de entrada, você recomenda outros jogos que tenham características similares (mesmos gêneros, plataformas ou notas).
+
+C. Recomendações Personalizadas
+Como você não tem dados de usuários, não poderá realizar recomendações personalizadas com base no histórico de um usuário específico. No entanto, se você tiver um conjunto de jogos de entrada, pode recomendar outros jogos com base nas características em comum. Por exemplo, se um usuário já gosta de jogos de ação e aventura na plataforma PlayStation, você pode recomendar outros jogos de ação e aventura disponíveis no PlayStation, com boas avaliações.
+
+4. Avaliação e Ajustes
+Após implementar o sistema, é importante avaliar a qualidade das recomendações. Isso pode ser feito manualmente (como testar as recomendações com alguns jogos conhecidos) ou por métricas de avaliação automáticas, como:
+
+Precisão e Recall: Medem quão precisas são as recomendações em termos de quais jogos são realmente interessantes para o usuário.
+Acurácia de Similaridade: Verificar se as recomendações de jogos realmente fazem sentido, ou seja, se jogos com características semelhantes realmente são bem recebidos por pessoas que gostam de jogos parecidos.
+5. Implementação Básica (Exemplo com Python)
+Aqui está um esboço de código para calcular a similaridade entre jogos com base em seus gêneros e plataformas usando o cosine similarity:
+
+python
+Copy
+import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import MultiLabelBinarizer
+
+# Exemplo de dados de jogos
+dados = {
+    'jogo': ['Jogo A', 'Jogo B', 'Jogo C'],
+    'generos': [['ação', 'aventura'], ['ação', 'RPG'], ['aventura', 'RPG']],
+    'plataformas': [['PC', 'PlayStation'], ['PC', 'Xbox'], ['PlayStation', 'Xbox']],
+    'nota': [85, 90, 88]  # Nota média de avaliação
+}
+
+# Criar DataFrame
+df = pd.DataFrame(dados)
+
+# Transformar gêneros e plataformas em variáveis binárias (one-hot encoding)
+mlb_generos = MultiLabelBinarizer()
+mlb_plataformas = MultiLabelBinarizer()
+
+generos_bin = mlb_generos.fit_transform(df['generos'])
+plataformas_bin = mlb_plataformas.fit_transform(df['plataformas'])
+
+# Combinar os dados (gêneros, plataformas e notas)
+X = pd.concat([pd.DataFrame(generos_bin), pd.DataFrame(plataformas_bin), df[['nota']]], axis=1)
+
+# Calcular a similaridade de cosseno entre os jogos
+similaridade = cosine_similarity(X)
+
+# Mostrar similaridade entre os jogos
+print(similaridade)
+6. Ajustes e Melhorias
+Após a implementação básica, você pode explorar melhorias como:
+
+Incluir mais características (como desenvolvedores ou ano de lançamento).
+Usar modelos mais avançados, como redes neurais ou Sistemas de Recomendação Híbridos (combinando filtragem baseada em conteúdo e filtragem colaborativa).
+Isso é apenas um ponto de partida, mas deve te dar uma boa direção para criar o sistema de recomendação sem precisar de dados de usuários. Se precisar de mais detalhes sobre alguma parte específica, me avise!
